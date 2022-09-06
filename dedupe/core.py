@@ -69,6 +69,11 @@ def randomPairs(n_records: int, sample_size: int) -> IndicesIterator:
     j = random_pairs + i * (b + i + 2) // 2 + 1
     j = j.astype(numpy.uint)
 
+    # keyerror issue - i,j could be generated as a number greater than n_records
+    # when n_records in the range of ~66,000 to ~92,000 
+    if max(i) > n_records or max(j) > n_records:
+        return randomPairsWithReplacement(n_records, sample_size)
+      
     return zip(i, j)
 
 
