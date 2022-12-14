@@ -27,8 +27,8 @@ install_requires = ["fastcluster; python_version < '3.10'",
 
 
 setup(
-    name='dedupe',
-    url='https://github.com/dedupeio/dedupe',
+    name='dedupe-fork-eccovia',
+    url='https://github.com/tigerang22/dedupe',
     version='2.0.12',
     author='Forest Gregg',
     author_email='fgregg@datamade.us',
