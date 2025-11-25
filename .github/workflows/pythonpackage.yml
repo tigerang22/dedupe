@@ -40,9 +40,11 @@ jobs:
         parallel: true
         flag_name: job-${{ matrix.os }}-${{ matrix.python-version }}       
     - name: flake8
+      if: ${{ env.SKIP_PYTEST != 'true' }}
       run: |
          flake8 dedupe tests
     - name: Static Testing
+      if: ${{ env.SKIP_PYTEST != 'true' }}
       run: |        
         mypy --ignore-missing-imports dedupe
     - name: Integration test, record link
@@ -59,6 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls Finished
+      if: ${{ env.SKIP_PYTEST != 'true' }}
       uses: coverallsapp/github-action@57daa114ba54fd8e1c8563e8027325c0bf2f5e80
       with:
         github-token: ${{ secrets.GH_TOKEN }}
