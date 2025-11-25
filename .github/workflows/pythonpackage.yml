@@ -96,10 +96,11 @@ jobs:
         ls -la dist/
         ls -la wheelhouse/ || echo "No wheelhouse directory"
     - name: Publish wheels to PyPI
-      if: ${{ env.PUBLISH == 'true' }}
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        PUBLISH: ${{ vars.PUBLISH }}
+      if: ${{ env.PUBLISH == 'true' }}
       run: |
         pip install twine
         twine upload --skip-existing wheelhouse/*.whl
