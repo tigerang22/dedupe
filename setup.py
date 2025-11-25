@@ -28,7 +28,7 @@ install_requires = ["fastcluster; python_version < '3.10'",
 setup(
     name='dedupe-fork-eccovia',
     url='https://github.com/tigerang22/dedupe',
-    version='2.0.12',
+    version='2.0.13',
     author='Forest Gregg',
     author_email='fgregg@datamade.us',
     description='A python library for accurate and scaleable data deduplication and entity-resolution',

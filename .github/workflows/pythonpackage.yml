@@ -1,6 +1,6 @@
 name: tests
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
   test:
@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
-        python-version: [3.7, 3.8, 3.9, "3.10"]
+        python-version: ["3.12"]
         
     steps:
     - uses: actions/checkout@v1
@@ -29,7 +29,7 @@ jobs:
          pytest tests dedupe --cov dedupe
     - env:
         COVERALLS_PARALLEL: true
-        COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COVERALLS_REPO_TOKEN: ${{ secrets.GH_TOKEN }}
         COVERALLS_FLAG_NAME: job-${{ matrix.os}}-${{ matrix.python-version }}
       name: Submit to coveralls
       run: |
