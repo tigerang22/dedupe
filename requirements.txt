@@ -1,5 +1,7 @@
-pytest
-pytest-cov
+pytest>=6.0
+pytest-cov==7.0.0
+coverage[toml]>=7.10.6
+coveralls
 mock
 mypy
 flake8
