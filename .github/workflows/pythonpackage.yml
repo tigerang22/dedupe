@@ -56,16 +56,16 @@ jobs:
       if: ${{ env.SKIP_PYTEST != 'true' }}
       run: |
         python tests/canonical.py -vv
-  finish:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Coveralls Finished
-      if: ${{ env.SKIP_PYTEST != 'true' }}
-      uses: coverallsapp/github-action@57daa114ba54fd8e1c8563e8027325c0bf2f5e80
-      with:
-        github-token: ${{ secrets.GH_TOKEN }}
-        parallel-finished: true
+  # finish:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Coveralls Finished
+  #     if: ${{ env.SKIP_PYTEST != 'true' }}
+  #     uses: coverallsapp/github-action@57daa114ba54fd8e1c8563e8027325c0bf2f5e80
+  #     with:
+  #       github-token: ${{ secrets.GH_TOKEN }}
+  #       parallel-finished: true
   wheels:
     if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
     needs: test
