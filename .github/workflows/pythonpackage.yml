@@ -27,18 +27,17 @@ jobs:
     - name: Install test dependencies
       run: |        
         pip install -r requirements.txt
+        pip install 'coverage[toml]>=7.10.6' pytest-cov
     - name: pytest
       if: ${{ env.SKIP_PYTEST != 'true' }}
       run: |
          pytest tests dedupe --cov dedupe
-    - env:
-        COVERALLS_PARALLEL: true
-        COVERALLS_REPO_TOKEN: ${{ secrets.GH_TOKEN }}
-        COVERALLS_FLAG_NAME: job-${{ matrix.os}}-${{ matrix.python-version }}
-      name: Submit to coveralls
-      run: |
-        pip install https://github.com/bboe/coveralls-python/archive/github_actions.zip
-        coveralls
+    - name: Submit coverage to Coveralls
+      uses: coverallsapp/github-action@57daa114ba54fd8e1c8563e8027325c0bf2f5e80
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel: true
+        flag_name: job-${{ matrix.os }}-${{ matrix.python-version }}    
     - name: flake8
       run: |
          flake8 dedupe tests
