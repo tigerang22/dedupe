@@ -21,7 +21,7 @@ install_requires = ["fastcluster; python_version < '3.10'",
                     'haversine>=0.4.1',
                     'BTrees>=4.1.4',
                     'zope.index',
-                    'Levenshtein_search==1.4.5',
+                    'Levenshtein_search==1.4.6',
                     'typing_extensions']
 
 
